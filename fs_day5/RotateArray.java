@@ -57,31 +57,28 @@ Explanation:
 Since K = 0, the array remains unchanged. */
 import java.util.*;
 public class RotateArray{
-    public static void main(String[] args){
-        Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-        int[] arr = new int[n];
-        for(int i=0;i<n;i++){
-            arr[i]=sc.nextInt();
-        }
-        int k = sc.nextInt();
-        k=k%n;
-        int left = 0;
-        int right = n-1;
-        if(k!=0){
-        rotate(left,right,arr);
-        rotate(0,k-1,arr);
-        rotate(k,n-1,arr);
-        }
-        for(int i=0;i<n;i++){
-            System.out.print(arr[i]+" ");
+    public static void rotateArray(int nums[],int l,int h){
+        while(l<=h){
+            int temp=nums[l];
+            nums[l]=nums[h];
+            nums[h]=temp;
+            l++;
+            h--;
         }
     }
-    public static void rotate(int left,int right , int[] arr){
-        while(left<=right){
-            int temp = arr[left];
-            arr[left++]=arr[right];
-            arr[right--]=temp;
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        int nums[]=new int[n];
+        for(int i=0;i<n;i++)
+              nums[i]=sc.nextInt();
+        int k=sc.nextInt();
+        k=k%n;
+        rotateArray(nums,0,n-1);
+        rotateArray(nums,0,k-1);
+        rotateArray(nums,k,n-1);
+        for(int i:nums){
+            System.out.print(i+" ");
         }
     }
 }

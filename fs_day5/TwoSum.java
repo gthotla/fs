@@ -67,34 +67,34 @@ Their 1-based indices are 1 and 2.
 
  */
 import java.util.*;
-
 public class TwoSum{
-    public static void main(String[] args){
-    Scanner sc = new Scanner(System.in);
-    int n = sc.nextInt();
-    int[] arr = new int[n];
-    for(int i=0;i<n;i++){
-        arr[i]=sc.nextInt();
-    }
-    ArrayList<Integer> l = new ArrayList<>();
-    int val = sc.nextInt();
-    int left = 0;
-    int right = n-1;
-    while(left<right){
-        if((arr[left]+arr[right])==val){
-            l.add(left+1);
-            l.add(right+1);
-            break;
+    public static void twoSum(int a[],int n,int target){
+        //List<Integer> res=new ArrayList<>();
+        int low=0,high=n-1;
+        while(low<high){
+            int sum=a[low]+a[high];
+            if(sum==target){
+               System.out.println("["+(low+1)+", "+(high+1)+"]");
+                return ;
+            }
+            else if(sum<target){
+                low++;
+            }
+            else{
+                high--;
+            }
         }
-        else if((arr[left]+arr[right])>val){
-            right--;
-        }
-        else{
-            left++;
-        }
-        
+        System.out.println(-1);
         
     }
-    System.out.println(l.toString());
+    public static void main(String []args){
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        int a[]=new int[n];
+        for(int i=0;i<n;i++){
+            a[i]=sc.nextInt();
+        }
+        int target=sc.nextInt();
+        twoSum(a,n,target);
     }
 }
